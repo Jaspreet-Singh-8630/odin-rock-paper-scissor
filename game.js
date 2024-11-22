@@ -1,5 +1,38 @@
+const rockChoice  = document.querySelector(".rock-choice");
+const paperChoice  = document.querySelector(".paper-choice");
+const scissorChoice  = document.querySelector(".scissor-choice");
+const humanScoreId = document.querySelector("#human-score");
+const computerScoreId = document.querySelector("#computer-score");
+const winnerMessage = document.querySelector(".show-message");
+const playSection = document.querySelector(".play-section")
+
 let humanScore = 0;
 let computerScore = 0;
+
+function setScore(){
+    humanScoreId.textContent = `You : ${humanScore}`
+    computerScoreId.textContent = `Bot : ${computerScore}`
+}
+
+setScore()
+
+rockChoice.addEventListener("click",()=>{
+    let humanChoice = "rock";
+    playGame(humanChoice)
+})
+
+paperChoice.addEventListener("click",()=>{
+    let humanChoice = "paper";
+    playGame(humanChoice)
+})
+
+scissorChoice.addEventListener("click",()=>{
+    let humanChoice = "scissor";
+    playGame(humanChoice)
+})
+
+
+
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3)
@@ -8,75 +41,60 @@ function getComputerChoice() {
     if (num == 2) return "scissor"
 }
 
-function getHumanChoice() {
-    let choice = prompt("Enter your choice").toLowerCase();
-    return choice
-}
 
-
-function playGame() {
+function playGame(humanC) {
 
     let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
+    let humanChoice = humanC
 
     if (humanChoice == computerChoice) {
-        console.log("Game drawn");
+        winnerMessage.firstChild.textContent = "Game drawn";
     }
     else {
 
         if (humanChoice == "rock") {
             if (computerChoice == "paper") {
-                console.log("Bot won this ! He chose Paper");
+                winnerMessage.firstChild.textContent = "Bot won this ! He chose Paper";
                 computerScore++;
+
             }
             else if (computerChoice == "scissor") {
-                console.log("You won this ! Bot chose Scissor");
+                winnerMessage.firstChild.textContent = "You won this ! Bot chose Scissor";
                 humanScore++;
             }
         }
 
         if (humanChoice == "paper") {
             if (computerChoice == "rock") {
-                console.log("You won this ! Bot chose Rock");
+                winnerMessage.firstChild.textContent = "You won this ! Bot chose Rock";
                 humanScore++;
             }
             else if (computerChoice == "scissor") {
-                console.log("Bot won this ! He chose Scissor");
+                winnerMessage.firstChild.textContent = "Bot won this ! He chose Scissor";
                 computerScore++
             }
         }
 
         if (humanChoice == "scissor") {
             if (computerChoice == "rock") {
-                console.log("Bot won this ! He chose Rock");
+                winnerMessage.firstChild.textContent = "Bot won this ! He chose Rock";
                 computerScore++;
             }
             else if (computerChoice == "paper") {
-                console.log("You won this ! Bot chose Paper");
+                winnerMessage.firstChild.textContent = "You won this ! Bot chose Paper";
                 humanScore++;
             }
         }
 
     }
+    setScore()
+    playSection.classList.add("play-section-blur")
+    winnerMessage.style.visibility = "visible"
+    setTimeout(() => {
+        winnerMessage.style.visibility = "hidden"
+        playSection.classList.remove("play-section-blur")
+    }, 1000);
 }
 
 
-function playGround() {
-    for (let index = 0; index<5; index++) {
-        playGame();
-    }
-
-    if (humanScore > computerScore) {
-        console.log(`You won !!\nBot Score ${computerScore}\nYour Score ${humanScore}`);
-    }
-    else if (humanScore < computerScore) {
-        console.log(`You lost !!\nBot Score ${computerScore}\nYour Score ${humanScore}`);
-    }
-    else if (humanScore == computerScore) {
-        console.log(`Draw !!\nBot Score ${computerScore}\nYour Score ${humanScore}`);
-
-    }
-}
-
-playGround()
 

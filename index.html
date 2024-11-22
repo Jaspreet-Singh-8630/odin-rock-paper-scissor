@@ -2,10 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Odin Project - Rock Paper Scissor</title>
 </head>
 <body>
+    <div class="header">
+        <h1>Rock Paper Scissor</h1>
+    </div>
+    <div class="play-section">
+        <div class="rock-choice">
+            <img src="assets/rock_icon.png"/>
+        </div>
+        <div class="paper-choice">
+            <img src="assets/paper_icon.png"/>
+        </div>
+        <div class="scissor-choice">
+            <img src="assets/scissor_icon.png"/>
+        </div>
+    </div>
+    <div class="score-section">
+        <div class="score-title"><h1>Score</h1></div>
+        <div class="score-numbers">
+            <p id="human-score">You : 0</p>
+            <p id="computer-score">Bot : 0</p>
+        </div>
+    </div>
+    <div class="show-message">
+        <p></p>
+    </div>
     <script src="game.js"></script>
 </body>
 </html>
